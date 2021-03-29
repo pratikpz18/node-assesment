@@ -8,7 +8,7 @@ const Task = require('../models/taskmodel');
 router.get("/tasks", async (req, res) => {
     const task = await Task.find({});
     try {
-        res.send(task);
+        res.render('tasks', { result:task })
     } catch (error) {
         res.status(500).send(error);
     }
@@ -18,10 +18,11 @@ router.get("/tasks", async (req, res) => {
 
 router.post("/tasks", async (req, res) => {
     const task = req.body;
-    const taskp = new Task(task)
+    const taskp = await new Task(task)
     try {
-        taskp.save();
-        res.send(task);
+        await taskp.save();
+        console.log(taskp)
+        res.redirect('/task/tasks')
     } catch (error) {
         res.status(500).send(error);
     }

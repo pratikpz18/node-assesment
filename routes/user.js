@@ -20,7 +20,8 @@ router.post('/login', passport.authenticate('local-login', {
 
 
 router.get('/home',isLoggedIn,function (req, res) { 
-    res.render("home"); 
+    console.log(req.user.email)
+    res.render("home",{data:req.user.email}); 
 });  
 
 router.get('/signup',function (req, res) { 

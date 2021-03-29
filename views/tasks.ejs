@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>Task</h1>
+    <form action="/task/tasks" method="post">
+        <input type="text" name="task">
+        <button>Add</button>
+    </form>
+
+
+    <% for(var i = 0; i < result.length; i++) {%>
+        <li>
+            <span><%= result[i].task %></span>
+            <button>Edit</button>
+            <button>Delete</button>
+        </li>
+      <% } %>
+    <a href="/logout">logout</a>
+</body>
+</html>
