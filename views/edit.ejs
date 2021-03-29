@@ -4,11 +4,6 @@
 </head>
 <body>
     <h1>TaskEdit</h1>
-    <form action="/task/tasks" method="post">
-        <input type="text" name="task">
-        <button>Add</button>
-    </form>
-
 
     <% for(var i = 0; i < result.length; i++) {%>
            <% if (result[i]._id == taskid) { %>
