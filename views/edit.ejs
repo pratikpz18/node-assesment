@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>TaskEdit</h1>
+    <form action="/task/tasks" method="post">
+        <input type="text" name="task">
+        <button>Add</button>
+    </form>
+
+
+    <% for(var i = 0; i < result.length; i++) {%>
+           <% if (result[i]._id == taskid) { %>
+                <li>
+                <form action="/task/edit/<%= result[i]._id %>" method="PUT">
+                    <input type="text" value="<%= result[i].task %>" name="task">
+                    <button type="submit">Confirm</button>
+                    <a href="/" class="cancel">Cancel</a>
+                </form>
+                </li>
+            <% } else { %>
+            <li>
+                <span><%= result[i].task %></span>
+                <button>Edit</button>
+                <button>Delete</button>
+            </li>
+      <% } %>
+    <a href="/logout">logout</a>
+</body>
+</html>

@@ -29,34 +29,72 @@ router.post("/tasks", async (req, res) => {
 });
 
 //Update
+router.get('/edit/:taskid',async (req,res) => {
+    const taskid = req.params.taskid
+    try {
+        const task = await Task.find({});
+        console.log(task,taskid)
+        // res.send(task)
+        res.render('edit',{ result:task,taskid:taskid})
+        // res.render('tasksedit',{ result:task,taskid:taskid})
+    } catch (error) {
+        res.status(500).send(error);
+    }
+})
 
-router.put('/tasks/:taskid', async (req,res) => {
+router.post('/edit/:taskid', async (req,res) => {
     const taskid = req.params.taskid
     const task = req.body
     try{
         const updatetask = await Task.findByIdAndUpdate(taskid,task)
         updatetask.save()
-        res.send(updatetask)
-
+        res.redirect('/task/tasks');
     }catch (error) {
         console.log(error)
         res.status(500).send(error);
     }
 })
 
+// router.put('/edit/:taskid', async (req,res) => {
+//     const taskid = req.params.taskid
+//     const task = req.body
+//     try{
+//         const updatetask = await Task.findByIdAndUpdate(taskid,task)
+//         updatetask.save()
+//         res.redirect('/task/tasks');
+//     }catch (error) {
+//         console.log(error)
+//         res.status(500).send(error);
+//     }
+// })
+
 //DElete
 
-router.delete('/tasks/:taskid', async (req,res) => {
+router.get('/tasks/:taskid', async (req,res) => {
+    console.log("del")
     const taskid = req.params.taskid
     try{
         const deltask = await Task.findByIdAndDelete(taskid)
         deltask.save()
-        res.send("task deleted successfully");
+        res.redirect('/task/tasks')
     }catch(err){
         console.log(error)
         res.status(500).send(error);
     }
 })
+
+// router.delete('/tasks/:taskid', async (req,res) => {
+//     console.log("del")
+//     const taskid = req.params.taskid
+//     try{
+//         const deltask = await Task.findByIdAndDelete(taskid)
+//         deltask.save()
+//         res.redirect('/task/tasks')
+//     }catch(err){
+//         console.log(error)
+//         res.status(500).send(error);
+//     }
+// })
 
 
 

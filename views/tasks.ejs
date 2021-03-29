@@ -13,8 +13,8 @@
     <% for(var i = 0; i < result.length; i++) {%>
         <li>
             <span><%= result[i].task %></span>
-            <button>Edit</button>
-            <button>Delete</button>
+            <a href="/task/edit/<%= result[i]._id %>"><button>Edit</button></a>
+            <a href="/task/tasks/<%= result[i]._id %>"><button>Delete</button></a>
         </li>
       <% } %>
     <a href="/logout">logout</a>
