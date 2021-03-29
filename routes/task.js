@@ -27,6 +27,8 @@ router.post("/tasks", async (req, res) => {
     }
 });
 
+//Update
+
 router.put('/tasks/:taskid', async (req,res) => {
     const taskid = req.params.taskid
     const task = req.body
@@ -40,6 +42,8 @@ router.put('/tasks/:taskid', async (req,res) => {
         res.status(500).send(error);
     }
 })
+
+//DElete
 
 router.delete('/tasks/:taskid', async (req,res) => {
     const taskid = req.params.taskid
