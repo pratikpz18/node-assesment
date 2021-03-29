@@ -41,4 +41,18 @@ router.put('/tasks/:taskid', async (req,res) => {
     }
 })
 
+router.delete('/tasks/:taskid', async (req,res) => {
+    const taskid = req.params.taskid
+    try{
+        const deltask = await Task.findByIdAndDelete(taskid)
+        deltask.save()
+        res.send("task deleted successfully");
+    }catch(err){
+        console.log(error)
+        res.status(500).send(error);
+    }
+})
+
+
+
 module.exports = router
