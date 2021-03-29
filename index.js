@@ -6,7 +6,9 @@ const flash = require('connect-flash')
 const session  = require('express-session');
 
 const InitiateMongoServer = require('./config/db');
-const route = require('./routes/user')
+
+const user = require('./routes/user')
+const task = require('./routes/task')
 
 InitiateMongoServer()
 
@@ -25,7 +27,8 @@ app.use(session({
     secret: 'nodeassesment',
     resave: true,
     saveUninitialized: true,
- })); 
+})); 
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -41,4 +44,5 @@ app.listen(PORT, (req, res) => {
     console.log(`Server Started at PORT ${PORT}`);
 });
 
-app.use(route)
+app.use(user)
+app.use('/task',task)
