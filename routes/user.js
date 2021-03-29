@@ -25,12 +25,12 @@ router.get('/home',isLoggedIn,function (req, res) {
 
 router.get('/signup',function (req, res) { 
     console.log("d")
-    res.render("signup")
+    res.render("signup",{ message: req.flash('message') })
 });  
 
 router.get('/login',function (req, res) { 
     console.log("d")
-    res.render("login.ejs")
+    res.render("login",{ message: req.flash('loginMessage') })
 });  
 
 router.get('/logout',(req,res)=>{

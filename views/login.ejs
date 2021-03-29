@@ -4,6 +4,12 @@
 </head>
 <body>
     <h1>login</h1> 
+
+
+    <% if (message.length > 0) { %>
+		<div ><%= message %></div>
+	<% } %>
+  
   
     <form action="/login" method="post"> 
         <input type="text" name="email"

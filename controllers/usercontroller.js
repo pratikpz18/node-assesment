@@ -32,7 +32,7 @@ if (err)
 return done(err);
 
 if (user) {
-return done(null,user,false,{message:'User exist'});
+return done(null,user,false,req.flash('message','user exist'));
 } else {
 
 // if there is no user with that email -create the user
@@ -49,7 +49,7 @@ newUser.password = await bcrypt.hash(password, salt);
 newUser.save(function (err) {
     if (err) {throw err;}
     console.log(newUser.email + ' Registration succesful');
-    return done(null, newUser,{message:'Registration succesful'});
+    return done(null, newUser,req.flash('message','Registration succesful'));
 });
 }
 });    
@@ -69,10 +69,10 @@ User.findOne({ 'email' :  email },async function(err, user) {
 if (err)
 return done(err);
 if (!user)
-return done(null, false,{message:'User Not Found'}); // req.flash is the way to set flashdata using connect-flash
+return done(null, false,req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
 const isMatch = await bcrypt.compare(password, user.password);
 if (!isMatch)
-return done(null, false,{message:'Password Incorrect'}); // create the loginMessage and save it to session as flashdata
+return done(null, false,req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 // all is well, return successful user
 // res.render("home"); 
 return done(null, user);
