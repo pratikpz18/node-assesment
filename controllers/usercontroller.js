@@ -23,8 +23,6 @@ passReqToCallback : true
 // allows us to pass back the entire request to the callback
 },
 async function(req,email, password, done) {
- // User.findOne won't fire unless data is sent back
-process.nextTick( function() {
 
 // find a user whose email is the same as the forms email
 User.findOne({ 'email' :  email },async function(err, user) {
@@ -52,8 +50,7 @@ newUser.save(function (err) {
     return done(null, newUser,req.flash('message','Registration succesful'));
 });
 }
-});    
-});
+});   
 }));
 
 // =================LOCAL LOGIN ======================================
